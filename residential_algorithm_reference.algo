@@ -56,7 +56,7 @@ DEFINE Column USING _id AND _status AND _amountOfFloors AND _amountOfElevators
         SET bestScore TO 5
         SET referenceGap TO 10000000
         INIT bestElevatorInformations
-
+''
         FOR EACH elevator IN THIS elevatorsList
             '//The elevator is at my floor and going in the direction I want
             IF requestedFloor EQUALS elevator currentFloor AND elevator status EQUALS stopped AND requestedDirection EQUALS elevator direction THEN
