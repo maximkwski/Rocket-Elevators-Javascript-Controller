@@ -20,12 +20,12 @@ class Column {
         let buttonFloor = 1;
         for (let i = 0; i < _amountOfFloors; i++) {
             if (buttonFloor < _amountOfFloors) {
-                let callUpButton = new CallButton(callButtonID, "off", buttonFloor, "up");
+                let callUpButton = new CallButton(callButtonID, buttonFloor, "up");
                 this.callButtonList.push(callUpButton);
                 callButtonID += 1;
             }
             if (buttonFloor > 1) {
-                let callDownButton = new CallButton(callButtonID, "off", buttonFloor, "down");
+                let callDownButton = new CallButton(callButtonID, buttonFloor, "down");
                 this.callButtonList.push(callDownButton);
                 callButtonID += 1;
             }
@@ -37,8 +37,6 @@ class Column {
     createElevators(_amountOfFloors, _amountOfElevators) {
         for (let i = 0; i < _amountOfElevators; i++) {
             let elevator = new Elevator(elevatorID, _amountOfFloors);
-            //elevator.status = "idle";
-            //elevator.currentFloor = 1;
             this.elevatorList.push(elevator);
             elevatorID++;
         }
@@ -86,7 +84,7 @@ class Column {
         return bestElevatorInformations.bestElevator;
     }
 
-    //checkIfElevatorIsBetter(scoreToCheck, newElevator, bestScore, referenceGap, bestElevator, floor) {
+
     checkIfElevatorIsBetter(scoreToCheck, newElevator, bestElevatorInformations, floor) {
         if (scoreToCheck < bestElevatorInformations.bestScore) {
             bestElevatorInformations.bestScore = scoreToCheck;
@@ -101,11 +99,7 @@ class Column {
                 bestElevatorInformations.referenceGap = gap;
             }
         }
-        // let elevatorResult = {
-        //     bestElevator: bestElevator,
-        //     bestScore: bestScore,
-        //     referenceGap: referenceGap
-        // }
+
         return bestElevatorInformations;
     }
 
@@ -127,7 +121,7 @@ class Elevator {
     createFloorRequestButtons(_amountOfFloors) {
             let buttonFloor = 1;
             for (let i = 0; i < _amountOfFloors; i++) {
-                let floorRequestButton = new FloorRequestButton(floorRequestButtonID, "off", buttonFloor);
+                let floorRequestButton = new FloorRequestButton(floorRequestButtonID, buttonFloor);
                 this.floorRequestButtonList.push(floorRequestButton);
                 buttonFloor += 1;
                 floorRequestButtonID += 1;
@@ -166,7 +160,7 @@ class Elevator {
     }
 
     sortFloorList() {
-        if (this.direction = "up") {
+        if (this.direction == "up") {
             this.floorRequestList.sort(function(a, b) { return a - b });
         } else { this.floorRequestList.sort(function(a, b) { return b - a }) }
     }
@@ -174,20 +168,6 @@ class Elevator {
     operateDoors() {
         let door = new Door();
         door.status = "opened";
-
-
-        //WHAIT 5 SECONDS
-        // if (totalPeople < weightLimit) {
-        //     door.status = "closing";
-        //     if (!door.obstruction) {
-        //         door.status = "closed"
-        //     } else { this.operateDoors() };
-        // } else {
-        //     while (this.totalPeople > this.weightLimit) {
-        //         this.overweightAlarm = "on";
-        //     }
-        //     this.operateDoors();
-        // }
 
     }
 }
@@ -206,7 +186,7 @@ class FloorRequestButton {
     constructor(_id, _floor) {
         this.ID = _id;
         this.floor = _floor;
-        this.status = "";
+        this.status = "off";
 
     }
 
